@@ -1,0 +1,26 @@
+{
+  "name": "hh-fb-bot",
+  "version": "1.0.0",
+  "description": "hh fb bot",
+  "main": "index.js",
+  "engines": {
+    "node": "6.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hh",
+    "fb",
+    "bot"
+  ],
+  "author": "ronaldronson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "request": "^2.72.0",
+    "hh_api": "ronaldronson/hh_api#1.1.0"
+  }
+}
