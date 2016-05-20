@@ -21,6 +21,6 @@
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "request": "^2.72.0",
-    "hh_api": "ronaldronson/hh_api#1.1.0"
+    "hh_api": "ronaldronson/hh_api#1.2.0"
   }
 }
