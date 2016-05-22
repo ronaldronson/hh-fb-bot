@@ -29,6 +29,10 @@ const getPostcode = str => str
   .map(v => v.shift())
   .shift()
 
+const getSearchUrl = (postcode, term) =>
+  'https://hungryhouse.co.uk/takeaways/' +
+  postcode + '/Pizza?q=' + term
+
 module.exports = (api, fb, dialogs) => (sender, msg, storage) => {
   const _ = (...arr) => isIn(normilize(msg), arr)
 
@@ -86,16 +90,13 @@ module.exports = (api, fb, dialogs) => (sender, msg, storage) => {
 
   try {
     api.callHH(storage.postcode, cousine, (err, data) => {
-      if (err || !data) {
-        _send('err')
-        setTimeout(() => {_send('again')}, 3000)
-      } else {
+      if (!err && data) {
         fb.sendRestaurantsMsg(sender, data, storage.postcode)
+      } else {
+        throw new Error(err)
       }
     })
   } catch (e) {
-    _send('err')
-    setTimeout(() => {_send('again')}, 3000)
+    _send('search', getSearchUrl(storage.postcode, cousine))
   }
-
 }

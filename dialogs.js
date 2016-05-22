@@ -78,6 +78,10 @@ const texts = {
     "Interesting question… I’ll think about it. In the meantime why don’t you think about what food you fancy.",
   ],
 
+  'search': [
+    "Have a look at whouse restaurants: [URL]"
+  ],
+
   'err': [
     'Sorry, something goes wrong...'
   ]
