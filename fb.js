@@ -25,7 +25,6 @@ function welcome(text) {
 }
 
 function send(sender, message) {
-  return console.log(message)
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token: config.access_token},

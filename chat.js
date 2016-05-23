@@ -33,7 +33,7 @@ const getSearchUrl = (postcode, term) =>
   'https://hungryhouse.co.uk/takeaways/' +
   postcode + '/Pizza?q=' + term
 
-module.exports = (api, fb, dialogs) => (sender, msg, storage) => {
+module.exports = (api, fb, dialogs) => (sender, msg, storage, save) => {
   const _ = (...arr) => isIn(normilize(msg), arr)
 
   const _send = (section, params) =>
@@ -45,6 +45,7 @@ module.exports = (api, fb, dialogs) => (sender, msg, storage) => {
       (ft ? 'hi' : 'ask') + '_' +
       (storage.postcode ? 'cousine' : 'postcode')
     )
+    save(storage)
   }
 
   if (storage.req === 'postcode') {  // check if current entry is postcode
@@ -53,7 +54,8 @@ module.exports = (api, fb, dialogs) => (sender, msg, storage) => {
     if (poscodeVal) {
       storage.req = false
       storage.postcode = poscodeVal
-
+      save(storage)
+  
       if (!storage.cousine) {      // do search ?
         _ask(false)
         return

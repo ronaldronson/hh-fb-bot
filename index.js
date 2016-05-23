@@ -4,9 +4,10 @@ const api = require('./api')
 const fb = require('./fb')
 const dialogs = require('./dialogs')
 
+let storage; // mongodb
+
 const chat = require('./chat')(api, fb, dialogs)
 
-const storage = {}
 const app = express()
 
 app.use(require('body-parser').json())
@@ -21,18 +22,26 @@ app.get('/fbbot', (req, res) => {
   res.send(fb.verification(req.query));
 })
 
-app.get('/data', (req, res) => {
-  res.send(JSON.stringify(storage))
-})
-
 app.post('/fbbot/', (req, res) => {
   fb.getMsg(req.body.entry, (sender, msg) => {
-    storage[sender] = storage[sender] || {}
-    chat(sender, msg, storage[sender])
+    const save = (record) => storage.updateOne(sender, record)
+    storage.find(sender, (err, record) => {
+      if (!record) storage.insert({sender: sender})
+      chat(sender, msg, record || {}, save)
+    })
   })
   res.sendStatus(200)
 })
 
-app.listen(app.get('port'), () => {
-  console.log('Node app is running on port', app.get('port'))
+require('./db')((err, db) => {
+  if (err)  {
+    consol.log(err)
+    return
+  }
+
+  storage = db
+
+  app.listen(app.get('port'), () => {
+    console.log('Node app is running on port', app.get('port'))
+  })
 })
