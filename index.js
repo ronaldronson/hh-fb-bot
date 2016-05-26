@@ -34,10 +34,7 @@ app.post('/fbbot/', (req, res) => {
 })
 
 require('./db')((err, db) => {
-  if (err)  {
-    consol.log(err)
-    return
-  }
+  if (err) return console.log(err)
 
   storage = db
 

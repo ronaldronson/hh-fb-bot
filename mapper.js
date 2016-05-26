@@ -1,7 +1,7 @@
 module.exports = {
   restToMsg: (rests, postcode) => rests.map(rest => ({
     "title": rest.name,
-    "subtitle": rest.cuisines,
+    "subtitle": rest.cuisines.replace(/&amp;/g, '&'),
     "image_url": "https://static.hungryhouse.co.uk/images/restlogos/" + rest.id + ".gif",
     "buttons": [{
       "type": "web_url",
