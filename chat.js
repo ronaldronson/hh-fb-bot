@@ -8,7 +8,7 @@ const isIn = (msg, parts) => parts
   .some(res => res)
 
 const matchCuisine = str => cousines
-  .map(cousine => isIn(str, cousine.split(' ')) && cousine)
+  .map(cousine => isIn(normilize(str), cousine.split(' ')) && cousine)
   .filter(a => a)
   .shift()
 
@@ -18,7 +18,7 @@ const getTerm = str => normilize(str)
   .shift()
 
 const normilize = str => String(str)
-  .toLocaleLowerCase()
+  .toLowerCase()
   .replace(/[!@#$%\^\&\*\(<>,.\{\}[\]]/g , '')
   .split(' ').filter(str => str).join(' ')
 
