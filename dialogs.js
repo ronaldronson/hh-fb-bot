@@ -74,7 +74,7 @@ const texts = {
   'again': [
       "Found something to your liking? Should we search again?",
       "Looking for something else? Shall we try again?",
-      "If this doesn’t suit your fancy lets try another search?"
+      "If this doesn’t suit your fancy let's try another search?"
 
     // "Found something to your liking?  If not let’s try again for something new",
     // "Almost there! Make your selection and food will be at your door soon!",
