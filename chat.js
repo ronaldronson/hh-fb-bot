@@ -93,14 +93,22 @@ module.exports = (api, fb, dialogs) => (sender, msg, storage, save) => {
     return
   }
 
-  if (_('hungry', 'starving', 'feed')) { // hungry/staving case
+  if (_('hi', 'hello', 'hey') && !matchCuisine(msg)) {
+      _ask(true)
+      return
+  }
+
+  if (_('yes', 'no')) {
+      _ask(_('hi', 'hello', 'hey'))
+      return
+  }
+
+  if (_('hungry', 'starving', 'feed', 'tasty', 'surprise')) { // hungry/staving case
     const cousine = matchCuisine(msg)
     const randomCousine = dialogs.getRandomCousine()
 
     cousine ? _send('search_cousine') : _send('maybe', randomCousine)
-
     doCall(storage.postcode, cousine || randomCousine)
-
     return
   }
 
