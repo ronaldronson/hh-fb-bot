@@ -56,9 +56,9 @@ const texts = {
   ],
 
   'search_cousine': [
+    // "Tasty! Here’s what matches your search:",
     "Great choice! Let’s see what we have:",
-    "Sounds good, here’s what’s available:",
-    "Tasty! Here’s what matches your search:",
+    "Sounds good, here’s what’s available:"
   ],
 
   'search_postcode': [
