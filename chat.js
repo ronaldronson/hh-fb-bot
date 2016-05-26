@@ -4,7 +4,7 @@ const cousines = require('./cousines')
 const words = ['i', "i'm", 'am', 'want', 'some', 'please', 'for', 'me', 'thanks', 'you', 'would', 'like', 'have', 'or', 'with', 'without', 'only', 'all', 'big', 'small', 'large']
 
 const isIn = (msg, parts) => parts
-  .map(part => !!~msg.indexOf(part))
+  .map(part => msg === part)
   .some(res => res)
 
 const matchCuisine = str => cousines
