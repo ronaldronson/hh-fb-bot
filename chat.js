@@ -1,7 +1,7 @@
 const postcode = require('./validation').postcode
 const cousines = require('./cousines')
 
-const words = ['i', "i'm", 'am', 'want', 'some', 'please', 'for', 'me', 'thanks', 'you', 'would', 'like', 'have', 'or', 'with', 'without', 'only', 'all', 'big', 'small', 'large']
+const words = ['i', "i'm", 'am', 'want', 'some', 'please', 'for', 'me', 'thanks', 'you', 'would', 'like', 'have', 'or', 'with', 'without', 'only', 'all', 'big', 'small', 'large', 'there', 'bot']
 
 const isIn = (msg, parts) => parts
   .map(part => msg === part)
