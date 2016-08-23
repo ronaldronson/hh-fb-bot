@@ -78,7 +78,7 @@ const texts = {
 
       "Tell me a new cuisine and I can search again.",
       "If you are looking for something else, type what you would like and I can search again.",
-      "If you want to search for something else, enter a cuisine or food type. ",
+      "If you want to search for something else, enter a cuisine or food type or type help. ",
 
     // "Found something to your liking?  If not let’s try again for something new",
     // "Almost there! Make your selection and food will be at your door soon!",
@@ -103,6 +103,14 @@ const texts = {
 
   'maybe': [
     'How about [COUSINE]?'
+  ],
+
+  'help': [
+    'I can only help you find a restaurant but our hungryhouse customer care team can help with any issues you have. Visit https://hungryhouse.co.uk/contact to talk to us on live chat'
+  ],
+
+  'verify_test': [
+    'Welcome to hungryhouse FB chatbot beta'
   ]
 
 }

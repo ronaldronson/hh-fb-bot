@@ -3,6 +3,7 @@ const express = require('express')
 const api = require('./api')
 const fb = require('./fb')
 const dialogs = require('./dialogs')
+const config = require('./config')
 
 let storage; // mongodb
 
@@ -27,7 +28,9 @@ app.post('/fbbot/', (req, res) => {
     const save = (record) => storage.updateOne(sender, record)
     storage.find(sender, (err, record) => {
       if (!record) storage.insert({sender: sender})
-      chat(sender, msg, record || {}, save)
+      storage.getMode((err, obj) => {
+        chat(sender, msg, record || {}, save, obj.value)
+      })
     })
   })
   res.sendStatus(200)

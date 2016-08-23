@@ -1,5 +1,6 @@
 const postcode = require('./validation').postcode
 const cousines = require('./cousines')
+const secret = require('./config').secret
 
 const words = ['i', "i'm", 'am', 'want', 'some', 'please', 'for', 'me', 'thanks', 'you', 'would', 'like', 'have', 'or', 'with', 'without', 'only', 'all', 'big', 'small', 'large', 'there', 'bot']
 
@@ -34,7 +35,7 @@ const getSearchUrl = (postcode, term) =>
   postcode + '/?q=' + term
 
 
-module.exports = (api, fb, dialogs) => (sender, msg, storage, save) => {
+module.exports = (api, fb, dialogs) => (sender, msg, storage, save, mode) => {
   const _ = (...arr) => isIn(normilize(msg), arr)
 
   const _send = (section, params) =>
@@ -59,6 +60,16 @@ module.exports = (api, fb, dialogs) => (sender, msg, storage, save) => {
       }
     })
 
+  if ('production' !== mode && !storage.trusted) {
+    if (msg === secret) {
+      storage.trusted = true
+      _send('verify_test')
+      save(storage)
+    }
+
+    return;
+  }
+
   if (storage.req === 'postcode') {  // check if current entry is postcode
     const poscodeVal = getPostcode(msg)    // check if input is valid postcode
 
@@ -76,6 +87,10 @@ module.exports = (api, fb, dialogs) => (sender, msg, storage, save) => {
       _send('postcode_error')
       return
     }
+  }
+
+  if (_('help')) {
+    return _send('help')
   }
 
   if (_('are you')) {  // easter egg

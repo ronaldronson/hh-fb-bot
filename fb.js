@@ -19,7 +19,7 @@ function welcome(text) {
     if (error) {
       console.log('Error sending message: ', error)
     } else if (response.body.error) {
-      console.log('Error: ', response.body.error)
+      console.log('Error (welcome): ', response.body.error)
     }
   })
 }
@@ -37,7 +37,7 @@ function send(sender, message) {
     if (error) {
       console.log('Error sending message: ', error)
     } else if (response.body.error) {
-      console.log('Error: ', response.body.error)
+      console.log('Error (send): ', response.body.error)
     }
   })
 }
