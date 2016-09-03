@@ -23,12 +23,7 @@ const normilize = str => String(str)
   .replace(/[!@#$%\^\&\*\(<>,.\{\}[\]]/g , '')
   .split(' ').filter(str => str).join(' ')
 
-const getPostcode = str => str
-  .split(' ')
-  .map(postcode)
-  .filter(v => v)
-  .map(v => v.shift())
-  .shift()
+const getPostcode = str => postcode(str) && postcode(str)[0].replace(' ', '')
 
 const getSearchUrl = (postcode, term) =>
   'https://hungryhouse.co.uk/takeaways/' +
@@ -104,7 +99,7 @@ module.exports = (api, fb, dialogs) => (sender, msg, storage, save, mode) => {
   }
 
   if (!storage.postcode) {  // no postcode
-    _ask(_('hi', 'hello', 'hey'))
+    _ask(true)
     return
   }
 
