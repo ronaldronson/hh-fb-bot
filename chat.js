@@ -128,5 +128,5 @@ module.exports = (api, fb, dialogs) => (sender, msg, storage, save, mode) => {
     _send('search_cousine')     // we had postcode before
   }
 
-  doCall(storage.postcode, matchCuisine(msg) || getTerm(msg))
+  doCall(storage.postcode, matchCuisine(msg) || msg)
 }
